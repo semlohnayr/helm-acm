@@ -1,0 +1,23 @@
+clusterName: 
+baseDomain: 
+clusterImageSet: openshift-v4.18.41
+environment:  # Matches your Day-2 Kustomize overlay directory
+
+controlPlaneReplicas: 3
+workerReplicas: 3
+
+# ESO Specifications
+secretStore:
+  name: 
+  kind: ClusterSecretStore
+  path: 
+
+# vSphere Infrastructure Specifications
+vsphere:
+  vcenter: ""
+  datacenter: ""
+  cluster: ""
+  datastore: ""
+  network: ""
+  apiVIP: ""
+  ingressVIP: ""
