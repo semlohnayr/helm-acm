@@ -1,0 +1,24 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-argo-cluster-bootstrap
+  namespace: open-cluster-management-global-set
+spec:
+  # 1. Restrict the evaluation pool to this specific ClusterSet
+  clusterSets:
+    - canary-clusterset
+  # 2. Keep your predicates to filter down within that ClusterSet
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchExpressions:
+            - key: vendor
+              operator: In
+              values:
+                - OpenShift
+            - key: environment
+              operator: In
+              values:
+                - dev
+                - stage
+                - prod
