@@ -1,0 +1,21 @@
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: {{ .Values.clusterName }}
+  namespace: {{ .Values.clusterName }}
+spec:
+  baseDomain: {{ .Values.baseDomain }}
+  clusterName: {{ .Values.clusterName }}
+  installed: false
+  provisioning:
+    imageSetRef:
+      name: {{ .Values.clusterImageSet }}
+    installConfigSecretRef:
+      name: {{ .Values.clusterName }}-install-config
+    sshPrivateKeySecretRef:
+      name: {{ .Values.clusterName }}-install-config
+  platform:
+    vsphere:
+      vCenter: {{ .Values.vsphere.vcenter }}
+  pullSecretRef:
+    name: {{ .Values.clusterName }}-pull-secret
