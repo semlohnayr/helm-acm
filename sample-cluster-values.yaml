@@ -1,6 +1,6 @@
 clusterName: 
 baseDomain: 
-clusterImageSet: openshift-v4.18.41
+clusterImageSet: openshift-v4.18.43
 environment:  # Matches your Day-2 Kustomize overlay directory
 
 controlPlaneReplicas: 3
@@ -21,3 +21,13 @@ vsphere:
   network: ""
   apiVIP: ""
   ingressVIP: ""
+
+# Enforced CPU profiles (1 socket, 4 cores per node)
+  controlPlane:
+    cpus: 4
+    coresPerSocket: 4
+    memoryMB: 16384  # 16GB Minimum required for Control Plane
+  workers:
+    cpus: 4
+    coresPerSocket: 4
+    memoryMB: 16384  # 16GB Recommended for Automation Hub workloads
